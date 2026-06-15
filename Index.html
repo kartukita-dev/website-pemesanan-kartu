@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pemesanan Kartu Perdana</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+.logo{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+.btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    margin-top:20px;
+    font-size:16px;
+    cursor:pointer;
+    background:#25D366;
+    color:white;
+}
+
+.btn:hover{
+    opacity:0.9;
+}
+
+.total{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.footer{
+    text-align:center;
+    color:#666;
+    margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="logo">
+Pemesanan Kartu Perdana
+</div>
+
+<label>Nama Lengkap</label>
+<input type="text" id="nama" placeholder="Masukkan nama lengkap">
+
+<label>Nomor HP yang Ingin Dibuat</label>
+<input type="text" id="nomor" placeholder="Contoh: 081234567890">
+
+<label>Operator</label>
+<select id="operator">
+    <option value="">Pilih Operator</option>
+    <option>Telkomsel</option>
+    <option>by.U</option>
+    <option>XL</option>
+    <option>AXIS</option>
+    <option>Indosat IM3</option>
+    <option>Tri (3)</option>
+    <option>Smartfren</option>
+</select>
+
+<label>Nomor HP Aktif</label>
+<input type="text" id="hpaktif" placeholder="Nomor yang bisa dihubungi">
+
+<label>Alamat Pengiriman</label>
+<textarea id="alamat" rows="4" placeholder="Alamat lengkap"></textarea>
+
+<label>Catatan Tambahan</label>
+<textarea id="catatan" rows="3" placeholder="Catatan untuk admin"></textarea>
+
+<div class="total">
+Total Pembayaran: Rp 262.000
+</div>
+
+<button class="btn" onclick="kirimWA()">
+Kirim Pesanan ke WhatsApp
+</button>
+
+<div class="footer">
+Setelah menekan tombol, WhatsApp akan terbuka dengan data pesanan yang sudah terisi.
+</div>
+
+</div>
+
+<script>
+function kirimWA(){
+
+const nama = document.getElementById('nama').value;
+const nomor = document.getElementById('nomor').value;
+const operator = document.getElementById('operator').value;
+const hpaktif = document.getElementById('hpaktif').value;
+const alamat = document.getElementById('alamat').value;
+const catatan = document.getElementById('catatan').value;
+
+const pesan =
+`*PEMESANAN KARTU PERDANA*
+
+Nama: ${nama}
+Nomor Diinginkan: ${nomor}
+Operator: ${operator}
+HP Aktif: ${hpaktif}
+Alamat: ${alamat}
+
+Catatan:
+${catatan}
+
+Total Pembayaran: Rp 262.000`;
+
+window.open(
+`https://wa.me/62881026270801?text=${encodeURIComponent(pesan)}`,
+'_blank'
+);
+
+}
+</script>
+
+</body>
+</html>
